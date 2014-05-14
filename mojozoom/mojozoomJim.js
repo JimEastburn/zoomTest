@@ -6,7 +6,7 @@
 
 var MojoZoom = (function() {
 
-	var $ = function(id) {return document.getElementById(id);};
+	//var $ = function(id) {return document.getElementById(id);};
 	var dc = function(tag) {return document.createElement(tag);};
 
 	var defaultWidth = 256;
@@ -94,8 +94,12 @@ var MojoZoom = (function() {
 
 		linkParent.style.position = "relative";
 		linkParent.style.display = "block";
-		linkParent.style.width = w+"px";
-		linkParent.style.height = h+"px";
+//		linkParent.style.width = w+"px";
+//		linkParent.style.height = h+"px";
+        linkParent.style.width = defaultWidth+"px";
+		linkParent.style.height = defaultHeight+"px";
+
+
 
 		var imgLeft = img.offsetLeft;
 		var imgTop = img.offsetTop;
@@ -112,7 +116,7 @@ var MojoZoom = (function() {
 
 		zoomImg.style.maxWidth = "none";
 		zoomImg.style.maxHeight = "none";
-		zoomImg.style.zIndex = 10000001;
+		//zoomImg.style.zIndex = 10000001;
 
 
 		document.body.appendChild(zoomImg);
@@ -150,6 +154,7 @@ var MojoZoom = (function() {
 
 			var imgPos = getElementPos(img);
 			zoomImgCtr.style.left = w + imgPos.x + "px";
+            //zoomImgCtr.style.left = "0px";
 			zoomImgCtr.style.top = imgPos.y + "px";
 
 			zoomImgCtr.style.width = (zoomWidth ? zoomWidth : defaultWidth) +"px";
@@ -168,6 +173,7 @@ var MojoZoom = (function() {
 
 			// bail out if img has been removed from dom
 			if (!zoomImg.parentNode) return;
+            console.log("line 172  addEvent(zoomImg, load, function()");
 
 			var zoomWidth = zoomImg.offsetWidth ? zoomImg.offsetWidth : zoomImg.naturalWidth;
 			var zoomHeight = zoomImg.offsetHeight ? zoomImg.offsetHeight : zoomImg.naturalHeight;
@@ -209,6 +215,7 @@ var MojoZoom = (function() {
 			if (!alwaysShow) {
 				addEvent(zoomInput, "mouseout", 
 					function(e) {
+                        console.log("line 218  addEvent(zoomInput, mouseout,");
 						var target = e.target || e.srcElement;
 						if (!target) return;
 						if (target.nodeName != "DIV") return;
@@ -225,8 +232,9 @@ var MojoZoom = (function() {
 					}
 				);
 				// a bit of a hack, mouseout is sometimes not caught if moving mouse really fast
-				addEvent(document.body, "mouseover", 
+				addEvent(document.body, "mouseover",
 					function(e) {
+                        console.log("line 237  addEvent(zoomInput, mouseover,");
 						if (isInImage && !(e.toElement == zoomBorder || e.target == zoomBorder)) {
 							ctr.style.display = "none";
 							zoomImgCtr.style.visibility = "hidden";
@@ -234,20 +242,47 @@ var MojoZoom = (function() {
 						}
 					}
 				);
+
+                addEvent(zoomInput, "click",
+                    function(e) {
+                        console.log("line 248  addEvent(zoomInput, click,");
+                        e.preventDefault();
+                        if(isInImage){
+                            ctr.style.display = "none";
+                            zoomImgCtr.style.visibility = "hidden";
+                            isInImage = false;
+                        }
+                        else{
+                            isInImage = true;
+
+                            var imgPos = getElementPos(img);
+
+                            if (useDefaultCtr) {
+                                //
+                                zoomImgCtr.style.left = w + imgPos.x + "px";
+                                //zoomImgCtr.style.left = "0px";
+                                zoomImgCtr.style.top = imgPos.y + "px";
+                            }
+                            ctr.style.display = "block";
+                            zoomImgCtr.style.visibility = "visible";
+                        }
+                    }
+                );
 			}
 
 			addEvent(zoomInput, "mousemove", 
 				function(e) {
-					isInImage = true;
-
-					var imgPos = getElementPos(img);
-
-					if (useDefaultCtr) {
-						zoomImgCtr.style.left = w + imgPos.x + "px";
-						zoomImgCtr.style.top = imgPos.y + "px";
-					}
-					ctr.style.display = "block";
-					zoomImgCtr.style.visibility = "visible";
+                    console.log("line 275  addEvent(zoomInput, mousemove,");
+//					isInImage = true;
+//
+//					var imgPos = getElementPos(img);
+//
+//					if (useDefaultCtr) {
+//						zoomImgCtr.style.left = w + imgPos.x + "px";
+//						zoomImgCtr.style.top = imgPos.y + "px";
+//					}
+//					ctr.style.display = "block";
+//					zoomImgCtr.style.visibility = "visible";
 
 					var pos = getEventMousePos(zoomInput, e);
 					if (e.srcElement && isIE) {
@@ -309,5 +344,4 @@ var MojoZoom = (function() {
 	};
 
 })();
-
 MojoZoom.addEvent(window, "load", MojoZoom.init);
