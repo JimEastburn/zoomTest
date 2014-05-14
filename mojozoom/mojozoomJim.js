@@ -89,6 +89,7 @@ var MojoZoom = (function() {
 			oldParent.replaceChild(linkParent, img);
             img.style.position = "absolute";
             img.style.zIndex = 1;
+
 			linkParent.appendChild(img);
 		} else {
 			var linkParent = oldParent;
@@ -226,6 +227,7 @@ var MojoZoom = (function() {
 						while (relTarget != target && relTarget.nodeName != "BODY" && relTarget.parentNode) {
 							relTarget = relTarget.parentNode;
 						}
+                        img.style.opacity = 1;
 						if (relTarget != target) {
 							isInImage = false;
 							ctr.style.display = "none";
@@ -243,6 +245,7 @@ var MojoZoom = (function() {
                         console.log("line 241  e.toElement," + e.toElement);
                         console.log("line 242  e.target," + e.target);
 						if (isInImage && !condition) {
+                            img.style.opacity = 1;
 							ctr.style.display = "none";
 							zoomImgCtr.style.visibility = "hidden";
 							isInImage = false;
@@ -258,8 +261,13 @@ var MojoZoom = (function() {
                             ctr.style.display = "none";
                             zoomImgCtr.style.visibility = "hidden";
                             isInImage = false;
+                            img.style.opacity = 1;
                         }
                         else{
+
+                            img.style.opacity = 0;
+
+
                             isInImage = true;
 
                             var imgPos = getElementPos(img);
