@@ -87,6 +87,8 @@ var MojoZoom = (function() {
 			var linkParent = dc("a");
 			linkParent.setAttribute("href", zoomSrc);
 			oldParent.replaceChild(linkParent, img);
+            img.style.position = "absolute";
+            img.style.zIndex = 1;
 			linkParent.appendChild(img);
 		} else {
 			var linkParent = oldParent;
@@ -153,8 +155,8 @@ var MojoZoom = (function() {
 			zoomImgCtr.className = "mojozoom_imgctr";
 
 			var imgPos = getElementPos(img);
-			zoomImgCtr.style.left = w + imgPos.x + "px";
-            //zoomImgCtr.style.left = "0px";
+			//zoomImgCtr.style.left = w + imgPos.x + "px";
+            zoomImgCtr.style.left = "0px";
 			zoomImgCtr.style.top = imgPos.y + "px";
 
 			zoomImgCtr.style.width = (zoomWidth ? zoomWidth : defaultWidth) +"px";
@@ -234,8 +236,13 @@ var MojoZoom = (function() {
 				// a bit of a hack, mouseout is sometimes not caught if moving mouse really fast
 				addEvent(document.body, "mouseover",
 					function(e) {
-                        console.log("line 237  addEvent(zoomInput, mouseover,");
-						if (isInImage && !(e.toElement == zoomBorder || e.target == zoomBorder)) {
+                        console.log("line 237  addEvent(document.body, mouseover,");
+                        var eToElement = e.toElement == zoomBorder;
+                        var eTarget = e.target == zoomBorder;
+                        var condition =  eToElement || eTarget;
+                        console.log("line 241  e.toElement," + e.toElement);
+                        console.log("line 242  e.target," + e.target);
+						if (isInImage && !condition) {
 							ctr.style.display = "none";
 							zoomImgCtr.style.visibility = "hidden";
 							isInImage = false;
@@ -259,8 +266,8 @@ var MojoZoom = (function() {
 
                             if (useDefaultCtr) {
                                 //
-                                zoomImgCtr.style.left = w + imgPos.x + "px";
-                                //zoomImgCtr.style.left = "0px";
+                                //zoomImgCtr.style.left = w + imgPos.x + "px";
+                                zoomImgCtr.style.left = "0px";
                                 zoomImgCtr.style.top = imgPos.y + "px";
                             }
                             ctr.style.display = "block";
