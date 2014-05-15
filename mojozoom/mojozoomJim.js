@@ -187,8 +187,10 @@ var MojoZoom = (function() {
 			var ratioW = zoomWidth / w;
 			var ratioH = zoomHeight / h;
 
-			var markerWidth = Math.round(ctrWidth / ratioW);
-			var markerHeight = Math.round(ctrHeight / ratioH);
+			//var markerWidth = 80;//Math.round(ctrWidth / ratioW);//was 23  IF you make it 80 instead of 23, then you cannot pan over the entire large image.
+			//var markerHeight = 80;//Math.round(ctrHeight / ratioH);//was 23
+            var markerWidth = Math.round(ctrWidth / ratioW);//was 23
+            var markerHeight = Math.round(ctrHeight / ratioH);//was 23
 
 			document.body.removeChild(zoomImg);
 			zoomImgCtr.appendChild(zoomImg);
@@ -205,13 +207,13 @@ var MojoZoom = (function() {
 			zoom.style.height = markerHeight+"px";
 
 
-			if (alwaysShow) {
-//				zoom.style.left = "0px";
-//				zoom.style.top = "0px";
-
-				zoomImg.style.left = "0px";
-				zoomImg.style.top = "0px";
-			}
+//			if (alwaysShow) {
+////				zoom.style.left = "0px";
+////				zoom.style.top = "0px";
+//
+//				zoomImg.style.left = "0px";
+//				zoomImg.style.top = "0px";
+//			}
 
 			var isInImage = false;
 
