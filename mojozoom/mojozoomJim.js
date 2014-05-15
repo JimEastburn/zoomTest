@@ -81,6 +81,7 @@ var MojoZoom = (function() {
 			oldParent.replaceChild(linkParent, img);
             img.style.position = "absolute";
             img.style.zIndex = 1;
+            img.style.cursor = "pointer";
 
 			linkParent.appendChild(img);
 		} else {
@@ -91,6 +92,7 @@ var MojoZoom = (function() {
 		linkParent.style.display = "block";
         linkParent.style.width = defaultWidth+"px";
 		linkParent.style.height = defaultHeight+"px";
+        linkParent.style.cursor = "default";
 
 		var imgLeft = img.offsetLeft;
 		var imgTop = img.offsetTop;
