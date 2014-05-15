@@ -130,8 +130,8 @@ var MojoZoom = (function() {
 		ctr.style.position = "absolute";
 		ctr.style.left = imgLeft+"px";
 		ctr.style.top = imgTop+"px";
-		ctr.style.width = w+"px";
-		ctr.style.height = h+"px";
+		//ctr.style.width = w+"px";
+		//ctr.style.height = h+"px";
 		ctr.style.overflow = "hidden";
 		ctr.style.display = "none";
 
@@ -216,42 +216,42 @@ var MojoZoom = (function() {
 			var isInImage = false;
 
 			if (!alwaysShow) {
-				addEvent(zoomInput, "mouseout", 
-					function(e) {
-                        console.log("line 218  addEvent(zoomInput, mouseout,");
-						var target = e.target || e.srcElement;
-						if (!target) return;
-						if (target.nodeName != "DIV") return;
-						var relTarget = e.relatedTarget || e.toElement;
-						if (!relTarget) return;
-						while (relTarget != target && relTarget.nodeName != "BODY" && relTarget.parentNode) {
-							relTarget = relTarget.parentNode;
-						}
-                        img.style.opacity = 1;
-						if (relTarget != target) {
-							isInImage = false;
-							ctr.style.display = "none";
-							zoomImgCtr.style.visibility = "hidden";
-						}
-					}
-				);
-				// a bit of a hack, mouseout is sometimes not caught if moving mouse really fast
-				addEvent(document.body, "mouseover",
-					function(e) {
-                        console.log("line 237  addEvent(document.body, mouseover,");
-                        var eToElement = e.toElement == zoomBorder;
-                        var eTarget = e.target == zoomBorder;
-                        var condition =  eToElement || eTarget;
-                        console.log("line 241  e.toElement," + e.toElement);
-                        console.log("line 242  e.target," + e.target);
-						if (isInImage && !condition) {
-                            img.style.opacity = 1;
-							ctr.style.display = "none";
-							zoomImgCtr.style.visibility = "hidden";
-							isInImage = false;
-						}
-					}
-				);
+//				addEvent(zoomInput, "mouseout",
+//					function(e) {
+//                        console.log("line 218  addEvent(zoomInput, mouseout,");
+//						var target = e.target || e.srcElement;
+//						if (!target) return;
+//						if (target.nodeName != "DIV") return;
+//						var relTarget = e.relatedTarget || e.toElement;
+//						if (!relTarget) return;
+//						while (relTarget != target && relTarget.nodeName != "BODY" && relTarget.parentNode) {
+//							relTarget = relTarget.parentNode;
+//						}
+//                        img.style.opacity = 1;
+//						if (relTarget != target) {
+//							isInImage = false;
+//							ctr.style.display = "none";
+//							zoomImgCtr.style.visibility = "hidden";
+//						}
+//					}
+//				);
+//				// a bit of a hack, mouseout is sometimes not caught if moving mouse really fast
+//				addEvent(document.body, "mouseover",
+//					function(e) {
+//                        console.log("line 237  addEvent(document.body, mouseover,");
+//                        var eToElement = e.toElement == zoomBorder;
+//                        var eTarget = e.target == zoomBorder;
+//                        var condition =  eToElement || eTarget;
+//                        console.log("line 241  e.toElement," + e.toElement);
+//                        console.log("line 242  e.target," + e.target);
+//						if (isInImage && !condition) {
+//                            img.style.opacity = 1;
+//							ctr.style.display = "none";
+//							zoomImgCtr.style.visibility = "hidden";
+//							isInImage = false;
+//						}
+//					}
+//				);
 
                 addEvent(zoomInput, "click",
                     function(e) {
@@ -285,7 +285,7 @@ var MojoZoom = (function() {
                 );
 			}
 
-			addEvent(zoomInput, "mousemove", 
+			addEvent(zoomInput, "mousemove",
 				function(e) {
                     console.log("line 275  addEvent(zoomInput, mousemove,");
 //					isInImage = true;
