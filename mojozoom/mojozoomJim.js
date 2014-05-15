@@ -193,22 +193,22 @@ var MojoZoom = (function() {
 			document.body.removeChild(zoomImg);
 			zoomImgCtr.appendChild(zoomImg);
 
-			var zoomFill = dc("div");
-			zoomFill.className = "mojozoom_fill";
-			zoom.appendChild(zoomFill);
+//			var zoomFill = dc("div");
+//			zoomFill.className = "mojozoom_fill";
+//			zoom.appendChild(zoomFill);
 
-			var zoomBorder = dc("div");
-			zoomBorder.className = "mojozoom_border";
-			zoom.appendChild(zoomBorder);
+//			var zoomBorder = dc("div");
+//			zoomBorder.className = "mojozoom_border";
+//			zoom.appendChild(zoomBorder);
 
 			zoom.style.width = markerWidth+"px";
 			zoom.style.height = markerHeight+"px";
 
 
 			if (alwaysShow) {
-				zoom.style.left = "0px";
-				zoom.style.top = "0px";
-	
+//				zoom.style.left = "0px";
+//				zoom.style.top = "0px";
+
 				zoomImg.style.left = "0px";
 				zoomImg.style.top = "0px";
 			}
@@ -324,8 +324,8 @@ var MojoZoom = (function() {
 					var left = ((pos.x - x)|0);
 					var top = ((pos.y - y)|0);
 
-					zoom.style.left = left + "px";
-					zoom.style.top = top + "px";
+//					zoom.style.left = left + "px";
+//					zoom.style.top = top + "px";
 
 					zoomImg.style.left = -((pos.x*ratioW - ctrWidth/2)|0)+"px";
 					zoomImg.style.top = -((pos.y*ratioH - ctrHeight/2)|0)+"px";
