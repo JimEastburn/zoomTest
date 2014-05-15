@@ -293,17 +293,7 @@ var MojoZoom = (function() {
 			addEvent(zoomInput, "mousemove",
 				function(e) {
                     console.log("line 275  addEvent(zoomInput, mousemove,");
-//					isInImage = true;
 //
-//					var imgPos = getElementPos(img);
-//
-//					if (useDefaultCtr) {
-//						zoomImgCtr.style.left = w + imgPos.x + "px";
-//						zoomImgCtr.style.top = imgPos.y + "px";
-//					}
-//					ctr.style.display = "block";
-//					zoomImgCtr.style.visibility = "visible";
-
 					var pos = getEventMousePos(zoomInput, e);
 					if (e.srcElement && isIE) {
 						if (e.srcElement == zoom) return;
@@ -326,12 +316,7 @@ var MojoZoom = (function() {
 					if (pos.y < y) pos.y = y;
 					if (pos.y > h-y) pos.y = h-y;
 
-					var left = ((pos.x - x)|0);
-					var top = ((pos.y - y)|0);
-
-//					zoom.style.left = left + "px";
-//					zoom.style.top = top + "px";
-
+//
 					zoomImg.style.left = -((pos.x*ratioW - ctrWidth/2)|0)+"px";
 					zoomImg.style.top = -((pos.y*ratioH - ctrHeight/2)|0)+"px";
 				}
