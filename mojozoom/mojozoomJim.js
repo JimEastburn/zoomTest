@@ -307,22 +307,16 @@ var MojoZoom = (function() {
 							pos.y -= (imgPos.y - zoomImgPos.y);
 						}
 					}
-					var x = markerWidth/2;
-					var y = markerHeight/2;
+					var xRatio = zoomImg.naturalWidth/defaultWidth;
+                    var yRatio = zoomImg.naturalHeight/defaultHeight;
 
-					if (!isIE) {
-						pos.x -= imgLeft;
-						pos.y -= imgTop;
-					}
+                    if (!isIE) {
+                        pos.x -= imgLeft;
+                        pos.y -= imgTop;
+                    }
 
-					if (pos.x < x) pos.x = x;
-					if (pos.x > w-x) pos.x = w-x;
-					if (pos.y < y) pos.y = y;
-					if (pos.y > h-y) pos.y = h-y;
-
-
-					zoomImg.style.left = -((pos.x*ratioW - ctrWidth/2)|0)+"px";
-					zoomImg.style.top = -((pos.y*ratioH - ctrHeight/2)|0)+"px";
+					zoomImg.style.left = -((pos.x*xRatio)|0)+"px";
+					zoomImg.style.top = -((pos.y*yRatio)|0)+"px";
                     console.log("zoomImg.style.left:  "+ zoomImg.style.left);
                     console.log("zoomImg.style.top:  "+ zoomImg.style.top);
                     var eClientX = -(e.clientX)+"px";
