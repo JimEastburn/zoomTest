@@ -162,6 +162,9 @@ var MojoZoom = (function() {
 
 			zoomImgCtr.style.width = (zoomWidth ? zoomWidth : defaultWidth) +"px";
 			zoomImgCtr.style.height = (zoomHeight ? zoomHeight : defaultHeight) +"px";
+            zoomImgCtr.style.position = "absolute";
+            zoomImgCtr.style.marginLeft = "0px";
+            zoomImgCtr.style.border="1px solid black";
 
 			document.body.appendChild(zoomImgCtr);
 			useDefaultCtr = true;
