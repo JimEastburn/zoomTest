@@ -267,12 +267,14 @@ var MojoZoom = (function() {
                             zoomImgCtr.style.visibility = "hidden";
                             isInImage = false;
                             img.style.opacity = 1;
+                            img.style.width = img.naturalWidth + "px";
+                            img.style.height = img.naturalHeight + "px";
                         }
                         else{
 
                             img.style.opacity = 0;
-                            img.style.width = "256px";
-                            img.style.height = "256px";
+                            img.style.width = defaultWidth + "px";
+                            img.style.height = defaultHeight + "px";
 
 
                             isInImage = true;
