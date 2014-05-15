@@ -1,12 +1,4 @@
-/*
- * MojoZoom 0.1.6 - JavaScript Image Zoom
- * Copyright (c) 2008 Jacob Seidelin, jseidelin@nihilogic.dk, http://blog.nihilogic.dk/
- * Licensed under the MPL License [http://www.nihilogic.dk/licenses/mpl-license.txt]
- */
-
 var MojoZoom = (function() {
-
-	//var $ = function(id) {return document.getElementById(id);};
 	var dc = function(tag) {return document.createElement(tag);};
 
 	var defaultWidth = 256;
@@ -97,12 +89,8 @@ var MojoZoom = (function() {
 
 		linkParent.style.position = "relative";
 		linkParent.style.display = "block";
-//		linkParent.style.width = w+"px";
-//		linkParent.style.height = h+"px";
         linkParent.style.width = defaultWidth+"px";
 		linkParent.style.height = defaultHeight+"px";
-
-
 
 		var imgLeft = img.offsetLeft;
 		var imgTop = img.offsetTop;
@@ -119,9 +107,6 @@ var MojoZoom = (function() {
 
 		zoomImg.style.maxWidth = "none";
 		zoomImg.style.maxHeight = "none";
-		//zoomImg.style.zIndex = 10000001;
-
-
 		document.body.appendChild(zoomImg);
 
 		var parent = img.parentNode;
@@ -130,8 +115,6 @@ var MojoZoom = (function() {
 		ctr.style.position = "absolute";
 		ctr.style.left = imgLeft+"px";
 		ctr.style.top = imgTop+"px";
-		//ctr.style.width = w+"px";
-		//ctr.style.height = h+"px";
 		ctr.style.overflow = "hidden";
 		ctr.style.display = "none";
 
@@ -156,7 +139,6 @@ var MojoZoom = (function() {
 			zoomImgCtr.className = "mojozoom_imgctr";
 
 			var imgPos = getElementPos(img);
-			//zoomImgCtr.style.left = w + imgPos.x + "px";
             zoomImgCtr.style.left = "0px";
 			zoomImgCtr.style.top = imgPos.y + "px";
 
@@ -190,73 +172,18 @@ var MojoZoom = (function() {
 			var ratioW = zoomWidth / w;
 			var ratioH = zoomHeight / h;
 
-			//var markerWidth = 80;//Math.round(ctrWidth / ratioW);//was 23  IF you make it 80 instead of 23, then you cannot pan over the entire large image.
-			//var markerHeight = 80;//Math.round(ctrHeight / ratioH);//was 23
             var markerWidth = Math.round(ctrWidth / ratioW);//was 23
             var markerHeight = Math.round(ctrHeight / ratioH);//was 23
 
 			document.body.removeChild(zoomImg);
 			zoomImgCtr.appendChild(zoomImg);
 
-//			var zoomFill = dc("div");
-//			zoomFill.className = "mojozoom_fill";
-//			zoom.appendChild(zoomFill);
-
-//			var zoomBorder = dc("div");
-//			zoomBorder.className = "mojozoom_border";
-//			zoom.appendChild(zoomBorder);
-
 			zoom.style.width = markerWidth+"px";
 			zoom.style.height = markerHeight+"px";
 
-
-//			if (alwaysShow) {
-////				zoom.style.left = "0px";
-////				zoom.style.top = "0px";
-//
-//				zoomImg.style.left = "0px";
-//				zoomImg.style.top = "0px";
-//			}
-
 			var isInImage = false;
 
-			if (!alwaysShow) {
-//				addEvent(zoomInput, "mouseout",
-//					function(e) {
-//                        console.log("line 218  addEvent(zoomInput, mouseout,");
-//						var target = e.target || e.srcElement;
-//						if (!target) return;
-//						if (target.nodeName != "DIV") return;
-//						var relTarget = e.relatedTarget || e.toElement;
-//						if (!relTarget) return;
-//						while (relTarget != target && relTarget.nodeName != "BODY" && relTarget.parentNode) {
-//							relTarget = relTarget.parentNode;
-//						}
-//                        img.style.opacity = 1;
-//						if (relTarget != target) {
-//							isInImage = false;
-//							ctr.style.display = "none";
-//							zoomImgCtr.style.visibility = "hidden";
-//						}
-//					}
-//				);
-//				// a bit of a hack, mouseout is sometimes not caught if moving mouse really fast
-//				addEvent(document.body, "mouseover",
-//					function(e) {
-//                        console.log("line 237  addEvent(document.body, mouseover,");
-//                        var eToElement = e.toElement == zoomBorder;
-//                        var eTarget = e.target == zoomBorder;
-//                        var condition =  eToElement || eTarget;
-//                        console.log("line 241  e.toElement," + e.toElement);
-//                        console.log("line 242  e.target," + e.target);
-//						if (isInImage && !condition) {
-//                            img.style.opacity = 1;
-//							ctr.style.display = "none";
-//							zoomImgCtr.style.visibility = "hidden";
-//							isInImage = false;
-//						}
-//					}
-//				);
+
 
                 addEvent(zoomInput, "click",
                     function(e) {
@@ -282,8 +209,6 @@ var MojoZoom = (function() {
                             var imgPos = getElementPos(img);
 
                             if (useDefaultCtr) {
-                                //
-                                //zoomImgCtr.style.left = w + imgPos.x + "px";
                                 zoomImgCtr.style.left = "0px";
                                 zoomImgCtr.style.top = imgPos.y + "px";
                             }
@@ -292,7 +217,7 @@ var MojoZoom = (function() {
                         }
                     }
                 );
-			}
+
 
 			addEvent(zoomInput, "mousemove",
 				function(e) {
@@ -317,14 +242,7 @@ var MojoZoom = (function() {
 
 					zoomImg.style.left = -((pos.x*xRatio)|0)+"px";
 					zoomImg.style.top = -((pos.y*yRatio)|0)+"px";
-                    console.log("zoomImg.style.left:  "+ zoomImg.style.left);
-                    console.log("zoomImg.style.top:  "+ zoomImg.style.top);
-                    var eClientX = -(e.clientX)+"px";
-                    var eClientY = -(e.clientY)+"px";
-                    //console.log("-(e.clientX)+px:  "+ eClientX);
-                    //console.log("-(e.clientY)+px:  "+ eClientY);
-//                    zoomImg.style.left = -(e.clientX)+"px";
-//					zoomImg.style.top = -(e.clientY)+"px";
+
 				}
 			);
 		});
