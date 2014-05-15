@@ -179,7 +179,7 @@ var MojoZoom = (function() {
 
 			// bail out if img has been removed from dom
 			if (!zoomImg.parentNode) return;
-            console.log("line 172  addEvent(zoomImg, load, function()");
+            //console.log("line 172  addEvent(zoomImg, load, function()");
 
 			var zoomWidth = zoomImg.offsetWidth ? zoomImg.offsetWidth : zoomImg.naturalWidth;
 			var zoomHeight = zoomImg.offsetHeight ? zoomImg.offsetHeight : zoomImg.naturalHeight;
@@ -260,7 +260,7 @@ var MojoZoom = (function() {
 
                 addEvent(zoomInput, "click",
                     function(e) {
-                        console.log("line 248  addEvent(zoomInput, click,");
+                        //console.log("line 248  addEvent(zoomInput, click,");
                         e.preventDefault();
                         if(isInImage){
                             ctr.style.display = "none";
@@ -271,6 +271,8 @@ var MojoZoom = (function() {
                         else{
 
                             img.style.opacity = 0;
+                            img.style.width = "256px";
+                            img.style.height = "256px";
 
 
                             isInImage = true;
@@ -292,8 +294,8 @@ var MojoZoom = (function() {
 
 			addEvent(zoomInput, "mousemove",
 				function(e) {
-                    console.log("line 275  addEvent(zoomInput, mousemove,");
-//
+                    //console.log("line 275  addEvent(zoomInput, mousemove,");
+
 					var pos = getEventMousePos(zoomInput, e);
 					if (e.srcElement && isIE) {
 						if (e.srcElement == zoom) return;
@@ -316,9 +318,17 @@ var MojoZoom = (function() {
 					if (pos.y < y) pos.y = y;
 					if (pos.y > h-y) pos.y = h-y;
 
-//
+
 					zoomImg.style.left = -((pos.x*ratioW - ctrWidth/2)|0)+"px";
 					zoomImg.style.top = -((pos.y*ratioH - ctrHeight/2)|0)+"px";
+                    console.log("zoomImg.style.left:  "+ zoomImg.style.left);
+                    console.log("zoomImg.style.top:  "+ zoomImg.style.top);
+                    var eClientX = -(e.clientX)+"px";
+                    var eClientY = -(e.clientY)+"px";
+                    //console.log("-(e.clientX)+px:  "+ eClientX);
+                    //console.log("-(e.clientY)+px:  "+ eClientY);
+//                    zoomImg.style.left = -(e.clientX)+"px";
+//					zoomImg.style.top = -(e.clientY)+"px";
 				}
 			);
 		});
