@@ -4,7 +4,7 @@ var MojoZoom = (function() {
 	var defaultWidth = 256;
 	var defaultHeight = 256;
 
-    //testing lenovo branch
+
 
 	function addEvent(element, ev, handler) 
 	{
@@ -90,8 +90,6 @@ var MojoZoom = (function() {
 			var linkParent = oldParent;
 		}
 
-
-
 		linkParent.style.position = "relative";
 		linkParent.style.display = "block";
         linkParent.style.width = defaultWidth+"px";
@@ -169,27 +167,10 @@ var MojoZoom = (function() {
 			if (!zoomImg.parentNode) return;
             //console.log("line 172  addEvent(zoomImg, load, function()");
 
-			var zoomWidth = zoomImg.offsetWidth ? zoomImg.offsetWidth : zoomImg.naturalWidth;
-			var zoomHeight = zoomImg.offsetHeight ? zoomImg.offsetHeight : zoomImg.naturalHeight;
-
-			var ctrWidth = zoomImgCtr.offsetWidth;
-			var ctrHeight = zoomImgCtr.offsetHeight;
-
-			var ratioW = zoomWidth / w;
-			var ratioH = zoomHeight / h;
-
-            var markerWidth = Math.round(ctrWidth / ratioW);//was 23
-            var markerHeight = Math.round(ctrHeight / ratioH);//was 23
-
 			document.body.removeChild(zoomImg);
 			zoomImgCtr.appendChild(zoomImg);
 
-			zoom.style.width = markerWidth+"px";
-			zoom.style.height = markerHeight+"px";
-
 			var isInImage = false;
-
-
 
                 addEvent(zoomInput, "click",
                     function(e) {
