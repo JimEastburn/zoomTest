@@ -4,6 +4,8 @@ var MojoZoom = (function() {
 	var defaultWidth = 256;
 	var defaultHeight = 256;
 
+    //testing lenovo branch
+
 	function addEvent(element, ev, handler) 
 	{
 		var doHandler = function(e) {
@@ -87,6 +89,8 @@ var MojoZoom = (function() {
 		} else {
 			var linkParent = oldParent;
 		}
+
+
 
 		linkParent.style.position = "relative";
 		linkParent.style.display = "block";
